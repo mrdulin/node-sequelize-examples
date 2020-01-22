@@ -1,5 +1,5 @@
 import Sequelize, { Model, HasManyGetAssociationsMixin, BelongsToGetAssociationMixin } from 'sequelize';
-import { sequelize } from '../../db';
+import { sequelize } from '../../../../db';
 
 class Task extends Model {
   public id!: number;

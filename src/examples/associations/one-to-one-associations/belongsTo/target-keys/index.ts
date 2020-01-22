@@ -1,5 +1,5 @@
 import { Model, DataTypes, BelongsToGetAssociationMixin } from 'sequelize';
-import { sequelize } from '../../db';
+import { sequelize } from '../../../../db';
 
 class User extends Model {
   public id!: number;

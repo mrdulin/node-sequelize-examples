@@ -1,4 +1,4 @@
-import { sequelize, User, Company } from './';
+import { sequelize, User, Company } from '../target-keys';
 import faker from 'faker';
 
 describe('associations', () => {

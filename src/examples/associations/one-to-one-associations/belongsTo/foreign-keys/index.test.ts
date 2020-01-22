@@ -1,4 +1,4 @@
-import { sequelize, Task, User } from '.';
+import { sequelize, Task, User } from '../foreign-keys';
 import faker from 'faker';
 
 describe('associations', () => {
