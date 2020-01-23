@@ -49,6 +49,7 @@ module.exports = {
           },
           key: 'ID',
         },
+        onDelete: 'restrict',
         allowNull: false,
       },
       Title: {
@@ -107,6 +108,7 @@ module.exports = {
             },
             key: 'ID',
           },
+          onDelete: 'restrict',
         },
         CategoryID: {
           type: Sequelize.INTEGER,
@@ -116,6 +118,7 @@ module.exports = {
             },
             key: 'ID',
           },
+          onDelete: 'cascade',
         },
         Last_Update: {
           type: Sequelize.DATE,

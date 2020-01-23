@@ -4,8 +4,9 @@ const faker = require('faker');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    let transaction;
     try {
-      const transaction = await queryInterface.sequelize.transaction();
+      transaction = await queryInterface.sequelize.transaction();
       const bulkInsertLanguagesTask = queryInterface.bulkInsert('Language', [
         { ID: 1, Name: faker.random.locale(), Last_Update: Sequelize.fn('NOW') },
         { ID: 2, Name: faker.random.locale(), Last_Update: Sequelize.fn('NOW') },
@@ -88,10 +89,16 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await Promise.all([
-      ['Language', 'Category', 'Film_Category', 'Film'].map((tableName) =>
-        queryInterface.bulkDelete(tableName, null, {}),
-      ),
-    ]);
+    let transaction;
+    try {
+      transaction = await queryInterface.sequelize.transaction();
+      await queryInterface.bulkDelete('Film_Category', null);
+      await queryInterface.bulkDelete('Film', null);
+      await Promise.all(['Category', 'Language'].map((tableName) => queryInterface.bulkDelete(tableName)));
+      await transaction.commit();
+    } catch (error) {
+      await transaction.rollback();
+      console.error(error);
+    }
   },
 };
