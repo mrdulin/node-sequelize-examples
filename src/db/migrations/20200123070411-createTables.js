@@ -44,9 +44,7 @@ module.exports = {
       LanguageID: {
         type: Sequelize.INTEGER,
         references: {
-          model: {
-            tableName: 'Language',
-          },
+          model: 'Language',
           key: 'ID',
         },
         onDelete: 'restrict',
@@ -97,25 +95,25 @@ module.exports = {
         allowNull: false,
       },
     });
+
     await queryInterface.createTable(
       'Film_Category',
       {
         FilmID: {
           type: Sequelize.INTEGER,
+          // composite primary key
+          primaryKey: true,
           references: {
-            model: {
-              tableName: 'Film',
-            },
+            model: 'Film',
             key: 'ID',
           },
           onDelete: 'restrict',
         },
         CategoryID: {
           type: Sequelize.INTEGER,
+          primaryKey: true,
           references: {
-            model: {
-              tableName: 'Category',
-            },
+            model: 'Category',
             key: 'ID',
           },
           onDelete: 'cascade',
@@ -125,20 +123,21 @@ module.exports = {
           allowNull: false,
         },
       },
+      // composite foreign key with unique constraint
       {
-        uniqueKeys: {
-          film_category_unique: {
-            fields: ['FilmID', 'CategoryID'],
-          },
-        },
+        // uniqueKeys: {
+        //   film_category_unique: {
+        //     fields: ['FilmID', 'CategoryID'],
+        //   },
+        // },
+        // logging: console.log,
       },
     );
   },
 
   down: (queryInterface, Sequelize) => {
-    // return Promise.all(
-    //   ['Category', 'Language', 'Film_Category', 'Film'].map((tableName) => queryInterface.dropTable(tableName)),
-    // );
-    return queryInterface.dropAllTables();
+    return Promise.all(
+      ['Category', 'Language', 'Film_Category', 'Film'].map((tableName) => queryInterface.dropTable(tableName)),
+    );
   },
 };
