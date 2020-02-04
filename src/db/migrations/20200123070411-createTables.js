@@ -124,20 +124,21 @@ module.exports = {
         },
       },
       // composite foreign key with unique constraint
-      {
-        // uniqueKeys: {
-        //   film_category_unique: {
-        //     fields: ['FilmID', 'CategoryID'],
-        //   },
-        // },
-        // logging: console.log,
-      },
+      // {
+      //   uniqueKeys: {
+      //     film_category_unique: {
+      //       fields: ['FilmID', 'CategoryID'],
+      //     },
+      //   },
+      //   logging: console.log,
+      // },
     );
   },
 
-  down: (queryInterface, Sequelize) => {
-    return Promise.all(
-      ['Category', 'Language', 'Film_Category', 'Film'].map((tableName) => queryInterface.dropTable(tableName)),
-    );
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('Film_Category');
+    await queryInterface.dropTable('Film');
+    await queryInterface.dropTable('Category');
+    await queryInterface.dropTable('Language');
   },
 };

@@ -1,5 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../db';
+import { Category } from './category';
+import { Film } from './film';
 
 class FilmCategory extends Model {
   public FilmID!: number;
@@ -34,4 +36,4 @@ FilmCategory.init(
   { sequelize, modelName: 'Film_Category' },
 );
 
-export { FilmCategory };
+export { FilmCategory, Film, Category };

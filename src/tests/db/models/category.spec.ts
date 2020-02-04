@@ -1,4 +1,4 @@
-import { Category } from '../../../db/models';
+import { Category, Film } from '../../../db/models';
 import { sequelize } from '../../../db/db';
 
 describe('models', () => {
@@ -18,6 +18,18 @@ describe('models', () => {
           }),
         );
       });
+    });
+
+    it('should get films by category', async () => {
+      const category: Category = await Category.findByPk(1);
+      const films: Film[] = await category.getFilms();
+      console.log(films);
+    });
+
+    it.only('should get categories by file', async () => {
+      const film: Film = await Film.findByPk(1);
+      const categories: Category[] = await film.getCategories();
+      console.log(categories);
     });
   });
 });

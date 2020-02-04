@@ -1,10 +1,12 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, BelongsToManyGetAssociationsMixin } from 'sequelize';
 import { sequelize } from '../db';
+import { Film } from './film_category';
 
 class Category extends Model {
   public ID!: number;
   public Name!: string;
   public Last_Update!: Date;
+  public getFilms!: BelongsToManyGetAssociationsMixin<Film>;
 }
 Category.init(
   {
