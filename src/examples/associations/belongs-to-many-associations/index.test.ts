@@ -31,17 +31,25 @@ describe('associations', () => {
       expect(userNamesOfProject1).toEqual(usersOfProject1);
     });
 
-    it.skip('should get users by users property of Project model', async () => {
+    it('should get users by users property of Project model', async () => {
       let project: Project = await Project.findByPk(1);
       expect(project.users).toBeUndefined();
       project = await Project.findByPk(1, { include: [Project.associations.users] });
       expect(project.users).toHaveLength(usersOfProject1.length);
     });
 
-    it('should get users', async () => {
+    it.only('should get users by project', async () => {
+      await Project.bulkCreate(
+        [
+          { name: faker.commerce.productName(), users: usersOfProject1 },
+          { name: faker.commerce.productName(), users: usersOfProject2 },
+        ],
+        { include: [User] },
+      );
       const project: Project = await Project.findByPk(1);
+      console.log('project:', project);
       const users: User[] = await project.getUsers();
-      expect(users).toBeDefined();
+      console.log('users: ', users);
     });
   });
 });
