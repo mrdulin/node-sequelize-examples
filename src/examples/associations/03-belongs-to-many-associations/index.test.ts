@@ -1,4 +1,4 @@
-import { sequelize, Project, User } from './';
+import { sequelize, Project, User } from '.';
 import faker from 'faker';
 
 describe('associations', () => {
@@ -29,13 +29,6 @@ describe('associations', () => {
       const userModelsOfProject1: User[] = await project1.getUsers();
       const userNamesOfProject1: Array<{ name: string }> = userModelsOfProject1.map((m: User) => ({ name: m.name }));
       expect(userNamesOfProject1).toEqual(usersOfProject1);
-    });
-
-    it('should get users by users property of Project model', async () => {
-      let project: Project = await Project.findByPk(1);
-      expect(project.users).toBeUndefined();
-      project = await Project.findByPk(1, { include: [Project.associations.users] });
-      expect(project.users).toHaveLength(usersOfProject1.length);
     });
 
     it.only('should get users by project', async () => {

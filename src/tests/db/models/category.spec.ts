@@ -26,7 +26,7 @@ describe('models', () => {
       console.log(films);
     });
 
-    it.only('should get categories by file', async () => {
+    it.only('should get categories by Film', async () => {
       const film: Film = await Film.findByPk(1);
       const categories: Category[] = await film.getCategories();
       console.log(categories);
