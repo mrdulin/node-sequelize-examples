@@ -1,9 +1,9 @@
-import { Model, DataTypes, BelongsToManyGetAssociationsMixin } from 'sequelize';
+import { Model, DataTypes, BelongsToManyGetAssociationsMixin, HasManyGetAssociationsMixin } from 'sequelize';
 import { sequelize } from '../../db';
 
 class Film extends Model {
   public ID!: number;
-  // public LanguageID!: number;
+  public LanguageID!: number;
   public Title!: string;
   public Description!: string;
   public Release_Year!: number;
@@ -25,15 +25,15 @@ Film.init(
       autoIncrement: true,
       allowNull: false,
     },
-    // LanguageID: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: 'Language',
-    //     key: 'ID',
-    //   },
-    //   onDelete: 'restrict',
-    //   allowNull: false,
-    // },
+    LanguageID: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Language',
+        key: 'ID',
+      },
+      onDelete: 'restrict',
+      allowNull: false,
+    },
     Title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -126,35 +126,36 @@ FilmCategory.init(
   { sequelize, modelName: 'Film_Category' },
 );
 
-// class Language extends Model {
-//   public ID!: number;
-//   public Name!: string;
-//   public Last_Update!: Date;
-// }
+class Language extends Model {
+  public ID!: number;
+  public Name!: string;
+  public Last_Update!: Date;
+  public getFilms!: HasManyGetAssociationsMixin<Film>;
+}
 
-// Language.init(
-//   {
-//     ID: {
-//       type: DataTypes.INTEGER,
-//       primaryKey: true,
-//       autoIncrement: true,
-//       allowNull: false,
-//     },
-//     Name: {
-//       type: DataTypes.STRING(20),
-//       allowNull: false,
-//     },
-//     Last_Update: {
-//       type: DataTypes.DATE,
-//       allowNull: false,
-//     },
-//   },
-//   { sequelize, modelName: 'Language' },
-// );
+Language.init(
+  {
+    ID: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    Name: {
+      type: DataTypes.STRING(20),
+      allowNull: false,
+    },
+    Last_Update: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+  },
+  { sequelize, modelName: 'Language' },
+);
 
 Category.belongsToMany(Film, { through: FilmCategory });
 Film.belongsToMany(Category, { through: FilmCategory });
 
-// Language.hasMany(Film);
+Language.hasMany(Film);
 
-export { Film, Category, FilmCategory, sequelize };
+export { Film, Category, FilmCategory, Language, sequelize };
