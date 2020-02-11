@@ -23,13 +23,13 @@ describe('models', () => {
     it('should get films by category', async () => {
       const category: Category = await Category.findByPk(1);
       const films: Film[] = await category.getFilms();
-      console.log(films);
+      expect(films).toHaveLength(1);
     });
 
-    it.only('should get categories by Film', async () => {
+    it('should get categories by Film', async () => {
       const film: Film = await Film.findByPk(1);
       const categories: Category[] = await film.getCategories();
-      console.log(categories);
+      expect(categories).toHaveLength(2);
     });
   });
 });

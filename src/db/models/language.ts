@@ -24,7 +24,7 @@ Language.init(
       allowNull: false,
     },
   },
-  { sequelize, modelName: 'Category' },
+  { sequelize, modelName: 'Language' },
 );
 
 export { Language };
