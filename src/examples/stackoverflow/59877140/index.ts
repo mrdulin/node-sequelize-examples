@@ -2,12 +2,7 @@ import { sequelize } from '../../db';
 import { Model, DataTypes } from 'sequelize';
 import assert from 'assert';
 
-interface SomeEntityModel extends Model {
-  result: any;
-  result_success: boolean;
-}
-
-class SomeEntity extends Model implements SomeEntityModel {
+class SomeEntity extends Model {
   public id!: number;
   public result!: any;
   public result_success!: boolean;
@@ -20,7 +15,7 @@ SomeEntity.init(
     },
     result_success: {
       type: DataTypes.VIRTUAL,
-      get(this: SomeEntityModel) {
+      get(this: SomeEntity) {
         return this.getDataValue('result').success;
       },
     },
