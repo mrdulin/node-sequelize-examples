@@ -19,7 +19,7 @@ const pool = new Pool({
   application_name: 'connection-pooling',
   max: 2,
   min: 1,
-  idleTimeoutMillis: 10 * 1000,
+  idleTimeoutMillis: 5 * 1000,
   connectionTimeoutMillis: 2000,
 });
 
