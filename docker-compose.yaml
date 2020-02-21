@@ -1,0 +1,13 @@
+version: "3.1"
+services:
+  pg:
+    image: postgres:9.6
+    restart: always
+    ports:
+      - ${POSTGRES_PORT}:5432
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ${PWD}/db-data:/db-data
