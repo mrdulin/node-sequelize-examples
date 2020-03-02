@@ -7,4 +7,4 @@ if (dotenvConfigOutput.error) {
 }
 
 const envVars = dotenvConfigOutput.parsed!;
-console.log(envVars);
+// console.log(envVars);
