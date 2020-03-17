@@ -19,7 +19,7 @@ const sequelize = new Sequelize({
   port: Number.parseInt(envVars.POSTGRES_PORT, 10),
   define: {
     freezeTableName: true,
-    timestamps: false,
+    // timestamps: false,
   },
 });
 
