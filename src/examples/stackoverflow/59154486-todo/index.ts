@@ -35,7 +35,7 @@ Employee.belongsToMany(Group, { through: 'GroupEmp', foreignKey: 'employeeId' })
     await sequelize.sync({ force: true });
     // seed
     await Group.bulkCreate([{ Employees: [{}, {}] }, { Employees: [{}, {}, {}] }], { include: [Employee] });
-    // count
+    // group and count
     const group = await Group.findAll({
       attributes: ['Groups.groupId', [Sequelize.fn('count', Sequelize.col('Employees.employeeId')), 'employeeCount']],
       include: [
