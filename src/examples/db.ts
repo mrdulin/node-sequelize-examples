@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
+import { Client } from 'pg';
 
 const dotenvConfigOutput = dotenv.config();
 if (dotenvConfigOutput.error) {
@@ -23,4 +24,12 @@ const sequelize = new Sequelize({
   },
 });
 
-export { sequelize };
+const pgclient = new Client({
+  user: envVars.POSTGRES_USER,
+  host: envVars.POSTGRES_HOST,
+  database: envVars.POSTGRES_DB,
+  password: envVars.POSTGRES_PASSWORD,
+  port: Number.parseInt(envVars.POSTGRES_PORT, 10),
+});
+
+export { sequelize, pgclient };
