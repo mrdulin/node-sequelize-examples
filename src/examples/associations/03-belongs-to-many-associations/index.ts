@@ -1,10 +1,4 @@
-import {
-  Model,
-  DataTypes,
-  BelongsToManyGetAssociationsMixin,
-  BelongsToManyAddAssociationMixin,
-  Association,
-} from 'sequelize';
+import { Model, DataTypes, BelongsToManyGetAssociationsMixin, BelongsToManyAddAssociationMixin } from 'sequelize';
 import { sequelize } from '../../db';
 
 class Project extends Model {
