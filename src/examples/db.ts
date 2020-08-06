@@ -22,6 +22,11 @@ const sequelize = new Sequelize({
     freezeTableName: true,
     timestamps: false,
   },
+  pool: {
+    max: 10,
+    min: 0,
+    idle: 10 * 1000,
+  },
 });
 
 const pgclient = new Client({

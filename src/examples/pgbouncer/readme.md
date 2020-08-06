@@ -17,3 +17,7 @@ populate database with some data
 ```bash
 pgbench -i -s 10 node-sequelize-examples -U testuser
 ```
+
+## References
+
+- https://devcenter.heroku.com/articles/best-practices-pgbouncer-configuration
