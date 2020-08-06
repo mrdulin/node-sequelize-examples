@@ -21,3 +21,4 @@ pgbench -i -s 10 node-sequelize-examples -U testuser
 ## References
 
 - https://devcenter.heroku.com/articles/best-practices-pgbouncer-configuration
+- https://github.com/sequelize/sequelize/issues/10424
