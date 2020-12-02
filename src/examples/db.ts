@@ -37,4 +37,15 @@ const pgclient = new Client({
   port: Number.parseInt(envVars.POSTGRES_PORT, 10),
 });
 
-export { sequelize, pgclient };
+async function runTest(commander: () => Promise<void>) {
+  try {
+    await sequelize.sync({ force: true });
+    await commander();
+  } catch (error) {
+    console.log(error);
+  } finally {
+    await sequelize.close();
+  }
+}
+
+export { sequelize, pgclient, runTest };
