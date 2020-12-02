@@ -25,7 +25,7 @@ User.init(
     await User.create({ name: 'John' });
     // insert multiple instances in bulk
     await User.bulkCreate([{ name: 'teresa teng' }, { name: 'slideshowp2' }, { name: 'John' }], {
-      updateOnDuplicate: ['name'],
+      ignoreDuplicates: true,
     });
   } catch (error) {
     console.log(error);
