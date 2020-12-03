@@ -18,7 +18,6 @@ const sequelize = new Sequelize({
   password: envVars.POSTGRES_PASSWORD,
   database: envVars.POSTGRES_DB,
   port: Number.parseInt(envVars.POSTGRES_PORT, 10),
-  dialectOptions: {},
   define: {
     freezeTableName: true,
     timestamps: false,
