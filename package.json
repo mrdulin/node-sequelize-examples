@@ -1,7 +1,7 @@
 {
   "name": "sequelize-examples",
   "version": "1.0.0",
-  "description": "Learning Sequelize.js ORM by examples",
+  "description": "Learning Sequelize.js(v5) ORM by examples",
   "main": "",
   "scripts": {
     "test": "jest",

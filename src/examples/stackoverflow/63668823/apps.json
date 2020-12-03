@@ -1,0 +1,17 @@
+[
+    {
+        "name": "app-a",
+        "description": "app a desc",
+        "ext_id": 1
+    },
+    {
+        "name": "app-b",
+        "description": "app b desc",
+        "ext_id": 2
+    },
+    {
+        "name": "app-c",
+        "description": "app c desc",
+        "ext_id": 3
+    }
+]
