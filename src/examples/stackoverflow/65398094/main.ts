@@ -17,7 +17,7 @@ async function main(req) {
   const service = await Service.findByPk(req.params.service_id, {
     include: [
       {
-        model: sequelize.models['User'],
+        model: Service.sequelize!.models['User'],
         attributes: {
           exclude: ['password'],
         },
@@ -29,3 +29,14 @@ async function main(req) {
 
 // eslint-disable-next-line @typescript-eslint/camelcase
 main({ params: { service_id: 1 } });
+
+const service = await Service.findByPk(req.params.service_id, {
+  include: [
+    {
+      model: User,
+      attributes: {
+        exclude: ['password'],
+      },
+    },
+  ],
+});
