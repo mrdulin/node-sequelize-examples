@@ -8,7 +8,7 @@ const sequelize = new Sequelize({
   username: envVars.POSTGRES_USER,
   password: envVars.POSTGRES_PASSWORD,
   database: envVars.POSTGRES_DB,
-  port: Number.parseInt(envVars.POSTGRES_PORT, 10),
+  port: Number.parseInt(envVars.POSTGRES_PORT || '5432', 10),
   define: {
     freezeTableName: true,
     timestamps: false,
@@ -25,7 +25,7 @@ const pgclient = new Client({
   host: envVars.POSTGRES_HOST,
   database: envVars.POSTGRES_DB,
   password: envVars.POSTGRES_PASSWORD,
-  port: Number.parseInt(envVars.POSTGRES_PORT, 10),
+  port: Number.parseInt(envVars.POSTGRES_PORT || '5432', 10),
 });
 
 export { sequelize, pgclient };
