@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize');
 
-module.exports = Sequelize.define(
+const sequelize = new Sequelize('sqlite::memory:');
+
+module.exports = sequelize.define(
   'User',
   {
     user_id: {

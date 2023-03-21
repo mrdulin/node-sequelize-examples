@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 
 const dotenvConfigOutput = dotenv.config();
 if (dotenvConfigOutput.error) {
@@ -6,5 +6,5 @@ if (dotenvConfigOutput.error) {
   process.exit(1);
 }
 
-const envVars = dotenvConfigOutput.parsed!;
+const envVars = dotenvConfigOutput.parsed;
 // console.log(envVars);
