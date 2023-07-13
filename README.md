@@ -16,4 +16,4 @@ POSTGRES_DB=node-sequelize-examples
 POSTGRES_PORT=5430
 ```
 
-Or using a SaaS: https://customer.elephantsql.com/instance
+Or using a SaaS: <https://customer.elephantsql.com/instance>
